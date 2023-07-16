@@ -39,7 +39,7 @@ AWS_LOCATION = 'static'
 PUBLIC_MEDIA_LOCATION = 'media'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
