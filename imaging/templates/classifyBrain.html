@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content%}
+    <body> <br>
+        <center> Download a dataset of images from Kaggle
+            <a href="https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri?resource=download"> here </a>
+             </center>
+        <div class ="card2">
+    <form method="post" enctype="multipart/form-data" action="predictImageBrain">
+{% csrf_token %}
+ <div class="upload-col">
+<input name="filePath" type="file" id="actual-btn" hidden/>
+<label for="actual-btn">Choose File</label>
+{% if filename %}
+<span id="file-chosen"> {{filename}}</span>
+{% else %}
+<span id="file-chosen"> No file chosen</span>
+{% endif %}
+ <br><br>
+ <input type="submit" value="Submit" id="submit-btn" hidden/>
+<label for="submit-btn">Submit</label>
+</div></div>
+ <div class = "card3">
+ <h2>{{prediction}}</h2>
+ <img src={{filePath}} alt='imagename' id="uploaded-img">
+ </div>
+</body>
+</form>
+</body>
+<br>
+{% endblock %}

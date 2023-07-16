@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content%}
+<div class="row">
+<div class="column">
+    <a href="uploadBrain" class="card-link">
+<div id="container">    
+            <div class="card">
+               
+                <div class="card-image">
+                    <img src="https://scikit-media-am831.s3.us-west-2.amazonaws.com/static/img/brain.jpg" id="brainimg"/>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">Brain Tumors</div>
+                    <p>Upload brain MRI images for tumor detection.</p>
+                </div>
+            </div>
+         </div>
+        </a>
+        </div>
+        <div class="column">
+            <a href="uploadSkin" class="card-link">
+                <div id="container">    
+                            <div class="card">
+                               
+                                <div class="card-image">
+                                    <img src="https://scikit-media-am831.s3.us-west-2.amazonaws.com/static/img/melanoma.jpg" id="skinimg"/>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-title">Melanoma</div>
+                                    <p>Upload images of skin abnormalities for melanoma detection.</p>
+                                </div>
+                            </div>
+                         </div>
+                        </a>
+        </div>
+    </div>
+{% endblock %}

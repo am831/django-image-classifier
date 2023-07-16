@@ -1,0 +1,101 @@
+body {
+    background-image:url("https://scikit-media-am831.s3.us-west-2.amazonaws.com/static/img/bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y;
+}
+
+.column {
+    float: center;
+    padding: 0 10px;
+    flex-grow: 2;
+}
+  
+.row {
+    margin: 0 -5px;
+    display: flex;
+    flex-direction: row;
+}
+ 
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#brainimg {
+    width: 100%;
+    height: 214px;
+    object-fit: cover;
+}
+
+#skinimg {
+    width: 100%;
+    height: 214px;
+    object-fit: cover;
+}
+
+#container {
+    max-width: 300px;
+    margin: 0 auto;
+    margin-top:20vh;
+}
+
+.card {
+    background-color: white;
+    box-shadow: 0 3px 3px 0 #A9A9A9, 0 3px 1px -2px #A9A9A9, 0 1px 5px 0 #A9A9A9;
+}
+
+.card:hover, .card:focus {
+    box-shadow: 0 2px 2px 0 #2d4b65, 0 3px 1px -2px #2d4b65, 0 1px 5px 0 #2d4b65;
+    bottom: -3px;
+    cursor: pointer;
+    transform: translate3D(0,-1px,0) scale(1.03);
+}
+
+.card-content {
+    font-size: 14px;
+    padding: 16px 8px 8px 8px;
+}
+
+.card-title {
+    text-align: center;
+    color: #2d5375;
+    font-weight: bold;
+    margin-top: 8px;
+    font-size: 21px;
+}
+
+.card-link {
+    text-decoration: none;
+}
+/*
+button {
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+  
+    font-weight: 600;
+    color: #0077ff;
+    background-color: #e0efff;
+  
+    
+    margin: 0 auto;
+    display: block;
+  
+    
+    cursor: pointer;
+  }
+
+  button:focus,
+button:hover {
+  background-color: #0077ff;
+  color: #e0efff;
+}
+*/
+p {
+    text-align: center;
+    font-size: 14px;
+    color: #7f8c9b;
+    line-height: 150%;
+}

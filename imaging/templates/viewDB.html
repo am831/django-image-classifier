@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<center>
+{% for i in listOfImagesPath %}
+{% if 'Notumor' in i %}
+<img src={{i}} style="width: 100px;"> No tumor  <br>  
+{% elif 'Positivetumor' in i %}
+<img src={{i}} style="width: 100px;"> Positive tumor  <br>
+{% elif 'Benign' in i %}
+<img src={{i}} style="width: 100px;"> Benign  <br>
+{% elif 'Malignant' in i %}
+<img src={{i}} style="width: 100px;"> Malignant  <br>
+{% endif %}
+{% endfor%}
+</center>
+{% endblock %}
