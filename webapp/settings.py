@@ -39,6 +39,8 @@ WEBSITE_HOSTNAME="med-image-classify.azurewebsites.net/"
 
 
 
+
+
 """
 env = environ.Env()
 environ.Env.read_env()
