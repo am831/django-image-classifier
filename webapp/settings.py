@@ -23,7 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY="django-insecure-7(mnpmn%s6b&b*q3*#u*v9ustf%=m^ryi5u1yo3^0cx9n56h15"
-SECRET_KEY=os.environ.get('SECRET_KEY')
+SECRET_KEY="django-insecure-7(mnpmn%s6b&b*q3*#u*v9ustf%=m^ryi5u1yo3^0cx9n56h15"
+
 AWS_ACCESS_KEY_ID=os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY=os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME=os.environ.get('AWS_STORAGE_BUCKET_NAME')
@@ -35,12 +36,12 @@ AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 AWS_LOCATION = 'static'
 PUBLIC_MEDIA_LOCATION = 'media'
 
+
+
 """
-
-
 env = environ.Env()
 environ.Env.read_env()
-SECRET_KEY = env('SECRET_KEY')
+#SECRET_KEY = env('SECRET_KEY')
 AWS_ACCESS_KEY_ID=env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY=env('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME=env('AWS_STORAGE_BUCKET_NAME')
