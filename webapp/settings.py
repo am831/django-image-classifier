@@ -36,14 +36,12 @@ AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 AWS_LOCATION = 'static'
 PUBLIC_MEDIA_LOCATION = 'media'
-WEBSITE_HOSTNAME="med-image-classify.azurewebsites.net/"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 #ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://' + os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
 
 
 # Application definition
