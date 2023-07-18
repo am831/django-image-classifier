@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    container_name: med_image_classify
+    volumes:
+      - .:/med_image_classify
+    ports:
+      - "8000:8000"
+    env_file: webapp/.env
