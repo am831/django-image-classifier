@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,13 +22,15 @@ PORT = 8000
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
-AWS_ACCESS_KEY_ID=os.environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_ACCESS_KEY=os.environ['AWS_SECRET_ACCESS_KEY']
-AWS_STORAGE_BUCKET_NAME=os.environ['AWS_STORAGE_BUCKET_NAME']
+env = environ.Env()
+environ.Env.read_env()
+SECRET_KEY = env('SECRET_KEY')
+AWS_ACCESS_KEY_ID=env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY=env('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME=env('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_FILE_OVERWRITE = False  
 AWS_DEFAULT_ACL = None  
-AWS_S3_REGION_NAME=os.environ['AWS_S3_REGION_NAME'] 
+AWS_S3_REGION_NAME=env('AWS_S3_REGION_NAME')
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 AWS_LOCATION = 'static'
@@ -39,7 +42,7 @@ DEBUG = False
 
 #ALLOWED_HOSTS = [WEBSITE_HOSTNAME] 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://' + WEBSITE_HOSTNAME] 
+#CSRF_TRUSTED_ORIGINS = ['https://' + WEBSITE_HOSTNAME] 
 
 
 # Application definition
