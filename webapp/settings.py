@@ -36,7 +36,7 @@ DEBUG = False
 
 #ALLOWED_HOSTS = [WEBSITE_HOSTNAME] 
 ALLOWED_HOSTS = ['*']
-
+#
 
 # Application definition
 
