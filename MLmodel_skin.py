@@ -1,10 +1,12 @@
 import os
-import cv2
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.svm import SVC
 import pickle
+import numpy as np
+from skimage.io import imread
+from skimage.transform import resize
 
 """
 This file is used to load the data and train the model for detecting melanoma.
@@ -17,9 +19,10 @@ images, ids = [], []
 for folder in id:
     path2 = "./train_skin" + "/" + folder
     for item in os.listdir(path2):
-        img = cv2.imread(path2 + '/' + item, 0)
-        img = cv2.resize(img, (200,200))
-        images.append(img)
+        img = imread((path2 + '/' + item), as_gray=True)
+        img_resized = resize(img, (200,200))
+        img_resized = img_resized.reshape(1, -1) / 255.0
+        images.append(img_resized)
         ids.append(id[folder])
 images = np.array(images)
 ids = np.array(ids)
@@ -43,18 +46,18 @@ print("Testing Score:", svc.score(x_test, y_test))
 decode = {0 : 'benign', 1 : "malignant"}
 prediction, correct= [], []
 for i in os.listdir("./test_skin/benign/"):
-    img = cv2.imread("./test_skin/benign/" +i,0)
-    img2 = cv2.resize(img, (200,200))
-    img2 = img2.reshape(1,-1) / 255
-    p = svc.predict(img2)
+    img = imread(("./test_skin/benign/" +i), as_gray=True)
+    img_resized = resize(img, (200,200))
+    img_resized = img_resized.reshape(1, -1) / 255.0
+    p = svc.predict(img_resized)
     prediction.append(p[0])
     correct.append(0)
 
 for i in os.listdir('./test_skin/malignant/'):
-    img = cv2.imread('./test_skin/malignant/'+i,0)
-    img1 = cv2.resize(img, (200,200))
-    img1 = img1.reshape(1,-1)/255
-    p = svc.predict(img1)
+    img = imread(('./test_skin/malignant/'+i), as_gray=True)
+    img_resized = resize(img, (200,200))
+    img_resized = img_resized.reshape(1, -1) / 255.0
+    p = svc.predict(img_resized)
     prediction.append(p[0])
     correct.append(1)
 

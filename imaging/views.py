@@ -3,13 +3,14 @@ from django.core.files.storage import FileSystemStorage
 from django.core.files.storage import default_storage
 import boto3
 from botocore.exceptions import NoCredentialsError
-import environ
 from django.conf import settings
 import pickle
-import numpy as np
-import os
-import cv2
 import urllib.request
+import numpy as np
+from skimage.io import imread, imshow
+from skimage.transform import resize
+import os
+from io import BytesIO
 
 modelBrain = pickle.load(open('imaging/detect_brain_tumor.pkl','rb'))
 modelSkin = pickle.load(open('imaging/detect_melanoma.pkl','rb'))
@@ -28,10 +29,8 @@ def predictImageBrain(request):
     Get the user uploaded image from the request, saves it in the s3 bucket,
     and then uses the model to predict if the image has a tumor or not.
     """
-    env = environ.Env()
-    environ.Env.read_env()
     s3 = boto3.client('s3')
-    AWS_STORAGE_BUCKET_NAME=env('AWS_STORAGE_BUCKET_NAME')
+    AWS_STORAGE_BUCKET_NAME=os.environ['AWS_STORAGE_BUCKET_NAME']
     if request.method == 'POST':
         file = request.FILES['filePath']
         folder = 'media/'
@@ -44,13 +43,11 @@ def predictImageBrain(request):
             return 'AWS credentials could not be found.'
         
     req=urllib.request.urlopen(file_url)
-    image_data = req.read()
-    np_arr = np.asarray(bytearray(image_data), dtype=np.uint8)
-    image = cv2.imdecode(np_arr, cv2.IMREAD_GRAYSCALE)
-    # Scale the feature vector to the desired number of features
-    img = cv2.resize(image, (200,200))
-    img = img.reshape(1,-1) / 255
-    prediction = modelBrain.predict(img)
+    img_data = req.read()
+    img = imread(BytesIO(img_data), as_gray=True)
+    img_resized = resize(img, (200,200))
+    img_resized = img_resized.reshape(1, -1) / 255.0
+    prediction = modelBrain.predict(img_resized)
     if prediction == 0:
         prediction = "No tumor"
     elif prediction == 1:
@@ -72,10 +69,8 @@ def predictImageSkin(request):
     Get the user uploaded image from the request, saves it in the s3 bucket,
     and then uses the model to predict if the image shows melanoma or not.
     """
-    env = environ.Env()
-    environ.Env.read_env()
     s3 = boto3.client('s3')
-    AWS_STORAGE_BUCKET_NAME=env('AWS_STORAGE_BUCKET_NAME')
+    AWS_STORAGE_BUCKET_NAME=os.environ['AWS_STORAGE_BUCKET_NAME']
     if request.method == 'POST':
         file = request.FILES['filePath']
         folder = 'media/'
@@ -88,13 +83,11 @@ def predictImageSkin(request):
             return 'AWS credentials could not be found.'
         
     req=urllib.request.urlopen(file_url)
-    image_data = req.read()
-    np_arr = np.asarray(bytearray(image_data), dtype=np.uint8)
-    image = cv2.imdecode(np_arr, cv2.IMREAD_GRAYSCALE)
-    # Scale the feature vector to the desired number of features
-    img = cv2.resize(image, (200,200))
-    img = img.reshape(1,-1) / 255
-    prediction = modelSkin.predict(img)
+    img_data = req.read()
+    img = imread(BytesIO(img_data), as_gray=True)
+    img_resized = resize(img, (200,200))
+    img_resized = img_resized.reshape(1, -1) / 255.0
+    prediction = modelBrain.predict(img_resized)
     if prediction == 0:
         prediction = "Benign"
     elif prediction == 1:
@@ -112,13 +105,10 @@ def predictImageSkin(request):
     return render(request, 'classifySkin.html', context)
 
 def viewDatabase(request):
-    sess = boto3.Session()
-    env = environ.Env()
-    environ.Env.read_env()
-    AWS_STORAGE_BUCKET_NAME=env('AWS_STORAGE_BUCKET_NAME')
-    AWS_ACCESS_KEY_ID=env('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY=env('AWS_SECRET_ACCESS_KEY')
-    AWS_S3_REGION_NAME=env('AWS_S3_REGION_NAME')
+    AWS_ACCESS_KEY_ID=os.environ['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY=os.environ['AWS_SECRET_ACCESS_KEY']
+    AWS_STORAGE_BUCKET_NAME=os.environ['AWS_STORAGE_BUCKET_NAME']
+    AWS_S3_REGION_NAME=os.environ['AWS_S3_REGION_NAME']
     s3 = boto3.resource('s3',
                         aws_access_key_id=AWS_ACCESS_KEY_ID,
                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
