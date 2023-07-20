@@ -1,6 +1,7 @@
 # Django Medical Image Classifier
 A Django webapp that uses machine learning models to classify images of melanoma and brain MRI scans as benign vs malignant. The user can upload images which are stored in an AWS S3 bucket.
-![homepage](https://github.com/am831/django-image-classifier/assets/59581465/0e78d311-14c4-4921-a1af-8c1adaf4e431)
+![homepage](https://github.com/am831/django-image-classifier/assets/59581465/6f1a0ef4-a1b2-452d-b5ee-36ace14b641f)
+
 
 # Image Classification with Scikit Learn
 Two different machine learning models were trained using datasets downloaded from Kaggle. One model can determine if a brain MRI image contains a tumor or not, the other can determine if a skin abnormality is melanoma or not. Neural networks were built with Scikit-Learn.
