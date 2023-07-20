@@ -6,17 +6,17 @@ from botocore.exceptions import NoCredentialsError
 from django.conf import settings
 import pickle
 import urllib.request
-import numpy as np
-from skimage.io import imread, imshow
+from skimage.io import imread
 from skimage.transform import resize
-import os
 from io import BytesIO
+import os
+from dotenv import load_dotenv
 
 modelBrain = pickle.load(open('imaging/detect_brain_tumor.pkl','rb'))
 modelSkin = pickle.load(open('imaging/detect_melanoma.pkl','rb'))
 
 def homepage(request):
-    return render(request, 'homepage.html', { 'a' : 1})
+    return render(request, 'homePage.html', { 'a' : 1})
 
 def uploadBrain(request):
     return render(request, 'classifyBrain.html', {'a' : 1})
@@ -30,7 +30,8 @@ def predictImageBrain(request):
     and then uses the model to predict if the image has a tumor or not.
     """
     s3 = boto3.client('s3')
-    AWS_STORAGE_BUCKET_NAME=os.environ['AWS_STORAGE_BUCKET_NAME']
+    load_dotenv()
+    AWS_STORAGE_BUCKET_NAME=os.environ.get('AWS_STORAGE_BUCKET_NAME')
     if request.method == 'POST':
         file = request.FILES['filePath']
         folder = 'media/'
@@ -70,7 +71,8 @@ def predictImageSkin(request):
     and then uses the model to predict if the image shows melanoma or not.
     """
     s3 = boto3.client('s3')
-    AWS_STORAGE_BUCKET_NAME=os.environ['AWS_STORAGE_BUCKET_NAME']
+    load_dotenv()
+    AWS_STORAGE_BUCKET_NAME=os.environ.get('AWS_STORAGE_BUCKET_NAME')
     if request.method == 'POST':
         file = request.FILES['filePath']
         folder = 'media/'
@@ -105,10 +107,12 @@ def predictImageSkin(request):
     return render(request, 'classifySkin.html', context)
 
 def viewDatabase(request):
-    AWS_ACCESS_KEY_ID=os.environ['AWS_ACCESS_KEY_ID']
-    AWS_SECRET_ACCESS_KEY=os.environ['AWS_SECRET_ACCESS_KEY']
-    AWS_STORAGE_BUCKET_NAME=os.environ['AWS_STORAGE_BUCKET_NAME']
-    AWS_S3_REGION_NAME=os.environ['AWS_S3_REGION_NAME']
+    s3 = boto3.client('s3')
+    load_dotenv()
+    AWS_STORAGE_BUCKET_NAME=os.environ.get('AWS_STORAGE_BUCKET_NAME')
+    AWS_ACCESS_KEY_ID=os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY=os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_REGION_NAME=os.environ.get('AWS_S3_REGION_NAME')
     s3 = boto3.resource('s3',
                         aws_access_key_id=AWS_ACCESS_KEY_ID,
                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
