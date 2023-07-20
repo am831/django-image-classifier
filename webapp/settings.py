@@ -32,7 +32,7 @@ AWS_LOCATION = 'static'
 PUBLIC_MEDIA_LOCATION = 'media'
 WEBSITE_HOSTNAME = 'med-image-classifier.azurewebsites.net'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [WEBSITE_HOSTNAME] 
 #ALLOWED_HOSTS = ['*']
