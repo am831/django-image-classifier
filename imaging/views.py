@@ -16,7 +16,7 @@ modelBrain = pickle.load(open('imaging/detect_brain_tumor.pkl','rb'))
 modelSkin = pickle.load(open('imaging/detect_melanoma.pkl','rb'))
 
 def homepage(request):
-    return render(request, 'homepage.html', { 'a' : 1})
+    return render(request, 'homePage.html', { 'a' : 1})
 
 def uploadBrain(request):
     return render(request, 'classifyBrain.html', {'a' : 1})
