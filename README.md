@@ -1,5 +1,5 @@
 # Django Medical Image Classifier
-A Django webapp that uses machine learning models to classify images of melanoma and brain MRI scans as benign vs malignant. The user can upload images which are stored in an aws s3 bucket.
+A Django webapp that uses machine learning models to classify images of melanoma and brain MRI scans as benign vs malignant. The user can upload images which are stored in an AWS S3 bucket.
 ![homepage](https://github.com/am831/django-image-classifier/assets/59581465/90fba4bf-143e-4ec5-96ca-bd1c9a5da5e7)
 
 # Image Classification with Scikit Learn
@@ -8,22 +8,40 @@ Two different machine learning models were trained using datasets downloaded fro
 - Brain tumor classification dataset can be downloaded [here](https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri?resource=download)
 - Melanoma classification dataset can be downloaded [here](https://www.kaggle.com/datasets/hasnainjaved/melanoma-skin-cancer-dataset-of-10000-images?resource=download)
 
+# Neural Network Performance
+BrainMRI ML model:
+- Training score: 0.9812717770034843
+- Testing score: 0.9355400696864111
+- Accuracy score: 0.8401015228426396
+
+Melanoma ML model:
+- Training score: 0.9068193649141072
+- Testing score: 0.8870380010411244
+- Accuracy score: 0.897
+
 # Installation
+- Download the docker image alisha831maddy/med_image_classify (4.38 GB)
+- Run the image with the command "docker run -p 8000:8000 alisha831maddy/med_image_classify"
+- The server will start at http://0.0.0.0:8000, but you need to navigate to http://localhost:8000
+- Download images to work with the ML models, see previous section for links to image datasets
 
 # Usage
 At the homepage shown above, click on the ML model you want to use. You'll be directed to a page where you can upload images for classification.
 ![braintumor](https://github.com/am831/django-image-classifier/assets/59581465/c7f4204e-feef-4791-991d-6eee9ae64738)
 ![melanoma](https://github.com/am831/django-image-classifier/assets/59581465/e120006a-e447-4f97-9c07-256677279c8f)
-
-If you click on View Gallery, you'll be directed to a page where you can view previously uploaded images.
+Navigate to View Gallery to see previously uploaded images that are stored in an AWS S3 bucket.
+![githubdemo](https://github.com/am831/django-image-classifier/assets/59581465/55255ad1-f2ca-4188-b706-2d6072c37c10)
 
 # Built With
 
-- Web Development:
-Django | HTML | CSS
+- **Web Development:** <br>
+Django | HTML | CSS 
 
-- Python 3.11 / Nueral Network
-Scikit-Learn | Numpy
+- **Python 3.11 / Nueral Network** <br>
+Scikit-Learn | Scikit-image | Numpy
 
-- Database
+- **Database** <br>
 AWS S3
+
+- **Deployment:** <br>
+Docker
