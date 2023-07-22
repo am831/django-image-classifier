@@ -4,12 +4,12 @@ A Django webapp that uses machine learning models to classify images of melanoma
 
 
 # Image Classification with Scikit Learn
-Two different machine learning models were trained using datasets downloaded from Kaggle. One model can determine if a brain MRI image contains a tumor or not, the other can determine if a skin abnormality is melanoma or not. Neural networks were built with Scikit-Learn.
+Two different machine learning models were trained using datasets downloaded from Kaggle. One model can determine if a brain MRI image contains a tumor or not, the other can determine if a skin abnormality is melanoma or not. Models were trained with Scikit-Learn using the support vector machine (SVM) algorithm.
 
 - Brain tumor classification dataset can be downloaded [here](https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri?resource=download)
 - Melanoma classification dataset can be downloaded [here](https://www.kaggle.com/datasets/hasnainjaved/melanoma-skin-cancer-dataset-of-10000-images?resource=download)
 
-# Neural Network Performance
+# Machine Learning Model Performance
 BrainMRI ML model:
 - Training score: 0.9812717770034843
 - Testing score: 0.9355400696864111
@@ -38,7 +38,7 @@ Navigate to View Gallery to see previously uploaded images that are stored in an
 - **Web Development:** <br>
 Django | HTML | CSS 
 
-- **Python 3.11 / Nueral Network** <br>
+- **Python 3.11 / Machine Learning** <br>
 Scikit-Learn | Scikit-image | Numpy
 
 - **Database** <br>
