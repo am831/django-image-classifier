@@ -6,7 +6,7 @@ class TestViews():
         client = Client()
         response = client.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'homepage.html')
+        self.assertTemplateUsed(response, 'homePage.html')
 
     def test_uploadBrain(self):
         client = Client()
