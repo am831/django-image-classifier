@@ -1,5 +1,5 @@
 # Django Medical Image Classifier
-A Django webapp that uses machine learning models to classify images of melanoma and brain MRI scans as benign vs malignant. The user can upload images which are stored in an AWS S3 bucket.
+A Django webapp that uses machine learning models to classify images of brain MRI scans and skin abnormalities as benign vs malignant. The user can upload images which are stored in an AWS S3 bucket.
 ![homepage](https://github.com/am831/django-image-classifier/assets/59581465/6f1a0ef4-a1b2-452d-b5ee-36ace14b641f)
 
 
